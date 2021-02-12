@@ -6,6 +6,8 @@ Partes restantes:
   - Login y logout, con sus sistemas correspondientes.
   - Pantalla de registro.
   
+  - Dirección y el resto de sus componentes.
+  
  A implementar:
   - Un usuario administrador con poder para editar y/o eliminar al resto de usuarios.
   - Que el resto de usuarios tengan un nivel básico.
