@@ -16,10 +16,20 @@ public interface IUserDAO {
 	boolean delete(Long id);
 
 	// Crear un nuevo usuario, lo almacena en la base de datos
-	boolean create(User user);
+	public User create(User user);
 
 	// Actualizar un usuario existente y lo cambia en la base de datos
 	boolean update(User user);
 	
+	// Sistema de login
+	public boolean login(String email, String password);
+	
+	// Sistema de búsqueda por el email
+	public User findByEmail(String email);
+	
+	// Actualizar la contraseña
+	public User updatePassword(Long userId, String newPass);
 	
 }
+
+

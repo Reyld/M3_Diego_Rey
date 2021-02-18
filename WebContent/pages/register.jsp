@@ -16,8 +16,6 @@
 
 </head>
 <body>
-	
-	
 	<jsp:include page="navbar.jsp"></jsp:include>
 	<h1 class="text-center mt-3">Pantalla creaci&oacute;n / edici&oacute;n Usuario</h1>
 	<br>
@@ -32,7 +30,7 @@
 
 			<div class="col-sm-6">
 
-				<form action="${pageContext.request.contextPath}/UserController" method="POST">
+				<form action="${pageContext.request.contextPath}/UserController" action="${pageContext.request.contextPath}/login" method="POST">
 
 					<!-- NOMBRE --> 
 					<div class="mb-3">
@@ -79,11 +77,10 @@
 					</div>
 					
 					<!-- <input type  --> 
-					<input type = "hidden" name = "id" value = "${user.id}"/>
+					
 					<button type="submit" class="btn btn-primary">Enviar</button>
 
 				</form>
-				
 				<a href= "${pageContext.request.contextPath}/UserController?action=LIST">Regresar a la lista de usuarios</a>
 			</div>
 

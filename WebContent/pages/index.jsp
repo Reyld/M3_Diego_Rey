@@ -1,1 +1,1 @@
-<% response.sendRedirect(request.getContextPath() + "/UserController"); %>
+<% response.sendRedirect(request.getContextPath() + "/pages/login.jsp"); %>

@@ -10,7 +10,7 @@
 
 </head>
 <body>
-
+	<jsp:include page="navbar.jsp"></jsp:include>
 	<div class = "container">
 		
 		<h1>Lista de usuarios</h1>
@@ -19,7 +19,7 @@
 		<p>${NOTIFICATION}</p>
 		
 		<p>
-			<button class = "btn btn-primary" onclick="window.location.href = 'user-edit.jsp'">Crear nuevo usuario</button>
+			<button class = "btn btn-primary" onclick="window.location.href = 'pages/user-edit.jsp'">Crear nuevo usuario</button>
 		</p>
 	
 		<table class = "table table-striped table-bordered">
@@ -62,7 +62,7 @@
 		</table>
 		
 	</div>
-
+	<jsp:include page="footer.jsp"></jsp:include>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>

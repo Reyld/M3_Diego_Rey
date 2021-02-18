@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entities.User;
 import interfaces.UserDAOImplement;
+import entities.AppConstants;
 import interfaces.IUserDAO;
 
 
@@ -40,8 +41,7 @@ public class UserController extends HttpServlet {
 			
 			RequestDispatcher dispatcher = null;
 			
-			UserDAOImplement userDAO = new UserDAOImplement();
-			
+			IUserDAO userDAO = new UserDAOImplement();
 
 			protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -102,22 +102,21 @@ public class UserController extends HttpServlet {
 				
 				// 1 - Recibimos datos del formulario de creación de usuario
 					
-					String id = request.getParameter("id");
-					
-				
+					String id = request.getParameter("id");			
 					String firstname = request.getParameter("firstname");
 					String lastname = request.getParameter("lastname");
 					Integer age = Integer.valueOf(request.getParameter("age"));
 					String email = request.getParameter("email");
 					String password = request.getParameter("password");
 					String nif = request.getParameter("nif");
-					Boolean married = Boolean.valueOf(request.getParameter("married"));
+					//	Boolean married = Boolean.valueOf(request.getParameter("married"));
 					
 					
 				// 2 - Almacenamos en la base de datos. Para ello, creamos un nuevo usuario.
 					
 					User usuario = new User();
-
+					
+//					usuario.setId(Long.valueOf(request.getParameter("id")));
 					usuario.setFirstname(firstname);
 					usuario.setLastname(lastname);
 					usuario.setAge(age);
@@ -132,8 +131,11 @@ public class UserController extends HttpServlet {
 					}
 					// 3 - Guardamos el objeto o actualizamos.
 					
+//					usuario.setUser((User)request.getSession().getAttribute(AppConstants.SESSION_USER));
+					
+					
 					if (id == null || id.isEmpty()) {
-						if(userDAO.create(usuario)) {
+						if(userDAO.create(usuario) != null) {
 							request.setAttribute("NOTIFICATION", "El usuario se ha creado correctamente.");
 						}
 						
@@ -179,12 +181,12 @@ public class UserController extends HttpServlet {
 				dispatcher.forward(request,  response);
 			}
 			
+			
 			private void userEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				String id = request.getParameter("id");
 				User usuario = userDAO.findOne(Long.parseLong(id));
 				request.setAttribute("user", usuario);
-				dispatcher = request.getRequestDispatcher("/pages/user-edit.jsp");
-				dispatcher.forward(request, response);
+				request.getRequestDispatcher(AppConstants.CREATE_USER_PAGE).forward(request, response);
 			}
 			
 			
@@ -194,6 +196,10 @@ public class UserController extends HttpServlet {
 				
 				dispatcher = request.getRequestDispatcher("/pages/user-list.jsp");
 				dispatcher.forward(request, response);
+				
+				request.setAttribute("userList", userList);
+
+				request.getRequestDispatcher(AppConstants.HOME_PAGE).forward(request, response);	
 			}
 	
 			
